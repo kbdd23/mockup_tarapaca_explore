@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarapacá Explore · Mockup</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+  <!-- Fondo ambient -->
+  <div class="bg-ambient"></div>
+
+  <!-- Teléfono -->
+  <div class="phone" id="phone">
+
+    <!-- Cámara / notch -->
+    <div class="phone-notch">
+      <div class="notch-sensor"></div>
+    </div>
+
+    <!-- Pantalla -->
+    <div class="screen" id="screen">
+
+      <!-- === PANTALLA 1: QR SCANNER === -->
+      <div class="screen-view active" id="view-qr">
+        <div class="qr-header">
+          <div class="lang-toggle" id="langToggle">
+            <span class="lang-option active" data-lang="es">ES</span>
+            <span class="lang-divider">|</span>
+            <span class="lang-option" data-lang="en">EN</span>
+          </div>
+        </div>
+        <div class="qr-body">
+          <div class="qr-scanner-frame">
+            <div class="qr-corner qr-tl"></div>
+            <div class="qr-corner qr-tr"></div>
+            <div class="qr-corner qr-bl"></div>
+            <div class="qr-corner qr-br"></div>
+            <div class="qr-icon" id="qrIcon">
+              <svg viewBox="0 0 80 80" width="80" height="80">
+                <rect x="5" y="5" width="30" height="30" rx="3" fill="none" stroke="#0055ff" stroke-width="3"/>
+                <rect x="45" y="5" width="30" height="30" rx="3" fill="none" stroke="#0055ff" stroke-width="3"/>
+                <rect x="5" y="45" width="30" height="30" rx="3" fill="none" stroke="#0055ff" stroke-width="3"/>
+                <line x1="45" y1="55" x2="75" y2="55" stroke="#0055ff" stroke-width="3"/>
+                <line x1="55" y1="45" x2="55" y2="55" stroke="#0055ff" stroke-width="3"/>
+                <rect x="55" y="60" width="10" height="10" rx="1" fill="#0055ff" opacity="0.6"/>
+                <rect x="70" y="60" width="5" height="10" rx="1" fill="#0055ff" opacity="0.6"/>
+              </svg>
+            </div>
+            <div class="qr-scan-line" id="scanLine"></div>
+          </div>
+          <p class="qr-label es" data-key="scan_label">Apunta al código QR para explorar</p>
+          <p class="qr-label en hidden" data-key="scan_label">Point at the QR code to explore</p>
+          <button class="btn-simulate" id="btnSimulate">
+            <span class="es" data-key="simulate_btn">SIMULAR ESCANEO</span>
+            <span class="en hidden" data-key="simulate_btn">SIMULATE SCAN</span>
+          </button>
+        </div>
+        <div class="qr-footer">
+          <div class="signal-bar"></div>
+          <span class="es" data-key="footer_hint">Señaléticas inteligentes · Tarapacá</span>
+          <span class="en hidden" data-key="footer_hint">Smart signposts · Tarapacá</span>
+        </div>
+      </div>
+
+      <!-- === PANTALLA 2: MAPA + PUNTOS === -->
+      <div class="screen-view" id="view-map">
+        <div class="map-header">
+          <div class="map-header-top">
+            <div class="lang-toggle small" id="langToggle2">
+              <span class="lang-option active" data-lang="es">ES</span>
+              <span class="lang-divider">|</span>
+              <span class="lang-option" data-lang="en">EN</span>
+            </div>
+            <span class="map-title es" data-key="map_title">Explorar Tarapacá</span>
+            <span class="map-title en hidden" data-key="map_title">Explore Tarapacá</span>
+            <button class="btn-back" id="btnBack">
+              <svg width="18" height="18" viewBox="0 0 18 18"><path d="M15 9H3M8 4L3 9l5 5" stroke="#0055ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="map-greeting es" data-key="map_greeting">¡Bienvenido! Estos son los puntos cercanos:</div>
+          <div class="map-greeting en hidden" data-key="map_greeting">Welcome! Here are nearby points:</div>
+        </div>
+
+        <!-- Mapa Folium con Camara Viajera -->
+        <div class="map-container" id="mapContainer">
+          <iframe src="mapa.html" id="foliumMap" class="folium-iframe" allow="geolocation"></iframe>
+
+          <!-- Indicador del punto actual -->
+          <div class="tour-indicator" id="tourIndicator">
+            <span class="tour-current es" data-key="tour_exploring">Punto:</span>
+            <span class="tour-current en hidden" data-key="tour_exploring">Point:</span>
+            <strong id="tourPointName">Iquique</strong>
+          </div>
+
+          <!-- Notificación flotante -->
+          <div class="proximity-notif hidden" id="proxNotif">
+            <div class="prox-icon">!</div>
+            <div class="prox-content">
+              <span class="es" data-key="prox_text">¡Hay puntos de interés cerca de ti!</span>
+              <span class="en hidden" data-key="prox_text">Points of interest nearby!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini tarjetas de puntos -->
+        <div class="poi-strip" id="poiStrip">
+          <div class="poi-card" data-poi="pisagua">
+            <div class="poi-dot" style="background:#0055ff"></div>
+            <div class="poi-info">
+              <strong class="es" data-key="pisagua_name">Pisagua</strong>
+              <strong class="en hidden" data-key="pisagua_name">Pisagua</strong>
+              <small class="es" data-key="pisagua_dist">A 2.3 km · Puerto histórico</small>
+              <small class="en hidden" data-key="pisagua_dist">2.3 km · Historic port</small>
+            </div>
+          </div>
+          <div class="poi-card" data-poi="iquique">
+            <div class="poi-dot" style="background:#0055ff"></div>
+            <div class="poi-info">
+              <strong class="es" data-key="iquique_name">Iquique</strong>
+              <strong class="en hidden" data-key="iquique_name">Iquique</strong>
+              <small class="es" data-key="iquique_dist">A 5.1 km · Playas y cultura</small>
+              <small class="en hidden" data-key="iquique_dist">5.1 km · Beaches & culture</small>
+            </div>
+          </div>
+          <div class="poi-card" data-poi="humberstone">
+            <div class="poi-dot" style="background:#0055ff"></div>
+            <div class="poi-info">
+              <strong class="es" data-key="humberstone_name">Humberstone</strong>
+              <strong class="en hidden" data-key="humberstone_name">Humberstone</strong>
+              <small class="es" data-key="humberstone_dist">A 8.7 km · Oficina salitrera</small>
+              <small class="en hidden" data-key="humberstone_dist">8.7 km · Saltpeter office</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- === PANTALLA 3: DETALLE PUNTO === -->
+      <div class="screen-view" id="view-detail">
+        <div class="detail-header">
+          <button class="btn-back-detail" id="btnBackDetail">
+            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M15 9H3M8 4L3 9l5 5" stroke="#0055ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="detail-title es" data-key="detail_title">Detalle del punto</span>
+          <span class="detail-title en hidden" data-key="detail_title">Point details</span>
+        </div>
+        <div class="detail-body" id="detailBody">
+          <!-- Rellenado dinámicamente -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Barra inferior (home indicator) -->
+    <div class="phone-home-bar"></div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
