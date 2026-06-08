@@ -13,23 +13,23 @@
 }
 
 :root {
-  --blue: #0055ff;
-  --blue-dark: #003dcc;
-  --blue-mid: #1a6bff;
-  --blue-light: #e8f0ff;
-  --blue-glow: rgba(0, 85, 255, 0.12);
-  --blue-glow-strong: rgba(0, 85, 255, 0.25);
-  --bg-primary: #f5f7fb;
-  --bg-secondary: #ffffff;
-  --bg-card: #fafbfc;
-  --bg-elevated: #ffffff;
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a6a;
-  --text-dim: #8a8aaa;
-  --border-color: #e2e6ef;
-  --border-soft: #eef1f6;
-  --amber: #cc6600;
-  --amber-light: #fff3e6;
+  --blue: #3b82f6;
+  --blue-dark: #2563eb;
+  --blue-mid: #60a5fa;
+  --blue-light: #1e3a5f;
+  --blue-glow: rgba(59, 130, 246, 0.15);
+  --blue-glow-strong: rgba(59, 130, 246, 0.3);
+  --bg-primary: #121212;
+  --bg-secondary: #1a1a1a;
+  --bg-card: #1e1e1e;
+  --bg-elevated: #242424;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --text-dim: #666666;
+  --border-color: #2a2a2a;
+  --border-soft: #222222;
+  --amber: #f59e0b;
+  --amber-light: #2a1f00;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -49,8 +49,8 @@ html, body {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0, 85, 255, 0.05) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(0, 85, 255, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59, 130, 246, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 60%),
     var(--bg-primary);
   z-index: 0;
 }
@@ -62,14 +62,14 @@ html, body {
   width: 340px;
   height: 700px;
   margin: 40px auto 0;
-  background: linear-gradient(145deg, #dce0ec, #c8cde0);
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
   border-radius: 48px;
   padding: 16px;
   box-shadow:
-    0 0 0 1px rgba(0, 85, 255, 0.06),
-    0 30px 80px rgba(0, 0, 0, 0.15),
-    0 0 60px rgba(0, 85, 255, 0.04),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    0 0 0 1px rgba(59, 130, 246, 0.08),
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(59, 130, 246, 0.03),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
   user-select: none;
 }
 
@@ -81,7 +81,7 @@ html, body {
   transform: translateX(-50%);
   width: 120px;
   height: 24px;
-  background: #b0b8cf;
+  background: #1a1a1a;
   border-radius: 0 0 16px 16px;
   z-index: 10;
   display: flex;
@@ -352,7 +352,7 @@ html, body {
   overflow: hidden;
   margin: 4px 12px;
   border-radius: var(--radius-md);
-  background: #ffffff;
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   min-height: 0;
 }
@@ -370,7 +370,7 @@ html, body {
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255,255,255,0.92);
+  background: rgba(30, 30, 30, 0.95);
   backdrop-filter: blur(6px);
   border: 1px solid var(--blue);
   border-radius: 20px;
@@ -378,7 +378,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 2px 12px rgba(0,85,255,0.12);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.12);
   z-index: 10;
   white-space: nowrap;
   font-size: 11px;
@@ -432,7 +432,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 0 20px var(--blue-glow), 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 0 20px var(--blue-glow), 0 4px 20px rgba(0,0,0,0.4);
   animation: slide-up-notif 0.4s ease, pulse-notif 2s ease-in-out 0.4s infinite;
   white-space: nowrap;
   z-index: 5;
@@ -607,7 +607,7 @@ html, body {
   width: 100%;
   height: 140px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #e8f0ff, #d0ddff);
+  background: linear-gradient(135deg, #0d1a2a, #1a1a2e);
   border: 1px solid var(--border-color);
   margin-bottom: 16px;
   display: flex;
@@ -622,7 +622,7 @@ html, body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 70% 20%, rgba(0, 85, 255, 0.08), transparent 60%);
+  background: radial-gradient(ellipse at 70% 20%, rgba(59, 130, 246, 0.1), transparent 60%);
 }
 
 .detail-hero-label {
@@ -710,7 +710,7 @@ html, body {
   transform: translateX(-50%);
   width: 120px;
   height: 4px;
-  background: rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.08);
   border-radius: 4px;
   z-index: 10;
 }
@@ -722,7 +722,7 @@ html, body {
 
 /* --- Scan success flash --- */
 @keyframes flash-blue {
-  0% { background: rgba(0, 85, 255, 0.25); }
+  0% { background: rgba(59, 130, 246, 0.3); }
   100% { background: transparent; }
 }
 
