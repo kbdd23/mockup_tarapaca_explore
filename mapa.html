@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_3d22348aa08d760a0be0970680739cb0 {
+                #map_8c0e5b08070bdd89647f09b245d789cb {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -62,6 +62,7 @@
     var leafletMap = null;
     var greenLayers = [];
     var arrowLayers = [];
+    var currentArrowRegion = null;
 
     function findMap() {
         for (var key in window) {
@@ -102,6 +103,12 @@
             } else {
                 layer.setStyle({ opacity: 0, fillOpacity: 0, radius: 0 });
             }
+        }
+        // Ocultar flechas al alejarse, mostrarlas al acercarse
+        if (!show && arrowLayers.length > 0) {
+            removeArrows();
+        } else if (show && arrowLayers.length === 0 && currentArrowRegion) {
+            addArrowsForRegion(currentArrowRegion);
         }
     }
 
@@ -156,6 +163,7 @@
 
     function addArrowsForRegion(regionId) {
         removeArrows();
+        currentArrowRegion = regionId;
         var region = regiones[regionId];
         if (!region) return;
         var rLat = region.centro[0];
@@ -249,14 +257,14 @@
 })();
 </script>
     
-            <div class="folium-map" id="map_3d22348aa08d760a0be0970680739cb0" ></div>
+            <div class="folium-map" id="map_8c0e5b08070bdd89647f09b245d789cb" ></div>
         
 </body>
 <script>
     
     
-            var map_3d22348aa08d760a0be0970680739cb0 = L.map(
-                "map_3d22348aa08d760a0be0970680739cb0",
+            var map_8c0e5b08070bdd89647f09b245d789cb = L.map(
+                "map_8c0e5b08070bdd89647f09b245d789cb",
                 {
                     center: [-19.9, -69.9],
                     crs: L.CRS.EPSG3857,
@@ -273,7 +281,7 @@
 
         
     
-            var tile_layer_afcf91c207189cb0c41b564065893b5b = L.tileLayer(
+            var tile_layer_d32a2f067434abf01b42ce5a6c47022f = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -290,17 +298,17 @@
             );
         
     
-            tile_layer_afcf91c207189cb0c41b564065893b5b.addTo(map_3d22348aa08d760a0be0970680739cb0);
+            tile_layer_d32a2f067434abf01b42ce5a6c47022f.addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-            var marker_0dee840a9b22240e2df2fff222b9455c = L.marker(
+            var marker_a4b94734ff5046bd1f6e43c45ec7f102 = L.marker(
                 [-20.2143, -70.1525],
                 {
 }
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-            var icon_4ded851d8dd60cf2cd238be217202021 = L.AwesomeMarkers.icon(
+            var icon_dc7bfd822028d3d563d3e898015505be = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -311,24 +319,24 @@
             );
         
     
-        var popup_88b4e1a5608ba43501a6f31521bcb304 = L.popup({
+        var popup_9f024f0b4503c8daebf145a52e0faebc = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_9488a79bda9a6563aa968b8c8d1041e3 = $(`<div id="html_9488a79bda9a6563aa968b8c8d1041e3" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Iquique</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Playas y cultura</div>         <p style="font-size:12px;color:#444;line-height:1.4;">Capital regional y principal centro turistico.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Hotel Cavancha Suites</strong><br>             <span style="color:#0055ff;font-size:11px;">Alojamiento</span><br>             <span style="font-size:11px;color:#555;">Frente a la playa.</span>         </div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Mercado Centenario</strong><br>             <span style="color:#0055ff;font-size:11px;">Gastronomia</span><br>             <span style="font-size:11px;color:#555;">Pescados frescos.</span>         </div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Turismo Activo</strong><br>             <span style="color:#0055ff;font-size:11px;">Tours</span><br>             <span style="font-size:11px;color:#555;">Parapente y surf.</span>         </div>              </div>     </div>`)[0];
-                popup_88b4e1a5608ba43501a6f31521bcb304.setContent(html_9488a79bda9a6563aa968b8c8d1041e3);
+                var html_210b6feaab992c1063a4e6b8f109724a = $(`<div id="html_210b6feaab992c1063a4e6b8f109724a" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Iquique</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Playas y cultura</div>         <p style="font-size:12px;color:#444;line-height:1.4;">Capital regional y principal centro turistico.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Hotel Cavancha Suites</strong><br>             <span style="color:#0055ff;font-size:11px;">Alojamiento</span><br>             <span style="font-size:11px;color:#555;">Frente a la playa.</span>         </div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Mercado Centenario</strong><br>             <span style="color:#0055ff;font-size:11px;">Gastronomia</span><br>             <span style="font-size:11px;color:#555;">Pescados frescos.</span>         </div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Turismo Activo</strong><br>             <span style="color:#0055ff;font-size:11px;">Tours</span><br>             <span style="font-size:11px;color:#555;">Parapente y surf.</span>         </div>              </div>     </div>`)[0];
+                popup_9f024f0b4503c8daebf145a52e0faebc.setContent(html_210b6feaab992c1063a4e6b8f109724a);
             
         
 
-        marker_0dee840a9b22240e2df2fff222b9455c.bindPopup(popup_88b4e1a5608ba43501a6f31521bcb304)
+        marker_a4b94734ff5046bd1f6e43c45ec7f102.bindPopup(popup_9f024f0b4503c8daebf145a52e0faebc)
         ;
 
         
     
     
-            marker_0dee840a9b22240e2df2fff222b9455c.bindTooltip(
+            marker_a4b94734ff5046bd1f6e43c45ec7f102.bindTooltip(
                 `<div>
                      Iquique
                  </div>`,
@@ -338,17 +346,17 @@
             );
         
     
-                marker_0dee840a9b22240e2df2fff222b9455c.setIcon(icon_4ded851d8dd60cf2cd238be217202021);
+                marker_a4b94734ff5046bd1f6e43c45ec7f102.setIcon(icon_dc7bfd822028d3d563d3e898015505be);
             
     
-            var marker_1359f42a60573b260ea425375d24418d = L.marker(
+            var marker_efb71db1d66f40d4bb608c47eb8cbf05 = L.marker(
                 [-19.5936, -70.2231],
                 {
 }
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-            var icon_0ad57165347b745f39068e18f8eaefc2 = L.AwesomeMarkers.icon(
+            var icon_59d66ac1529434b958951a5f25c91c36 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -359,24 +367,24 @@
             );
         
     
-        var popup_a1fcac668e3b367e2dc212857d92d060 = L.popup({
+        var popup_1808662901cb196a286e94e21690c07f = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_e79b3d02008d7e0285747b94fc911854 = $(`<div id="html_e79b3d02008d7e0285747b94fc911854" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Pisagua</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Puerto historico</div>         <p style="font-size:12px;color:#444;line-height:1.4;">Antiguo puerto salitrero del siglo XIX.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Cabanas del Puerto</strong><br>             <span style="color:#0055ff;font-size:11px;">Alojamiento</span><br>             <span style="font-size:11px;color:#555;">Cabanas con vista al mar.</span>         </div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Caleta Pisagua</strong><br>             <span style="color:#0055ff;font-size:11px;">Gastronomia</span><br>             <span style="font-size:11px;color:#555;">Pescados frescos.</span>         </div>              </div>     </div>`)[0];
-                popup_a1fcac668e3b367e2dc212857d92d060.setContent(html_e79b3d02008d7e0285747b94fc911854);
+                var html_fb5c87d8b65e01d81afa5a02da4d1353 = $(`<div id="html_fb5c87d8b65e01d81afa5a02da4d1353" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Pisagua</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Puerto historico</div>         <p style="font-size:12px;color:#444;line-height:1.4;">Antiguo puerto salitrero del siglo XIX.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Cabanas del Puerto</strong><br>             <span style="color:#0055ff;font-size:11px;">Alojamiento</span><br>             <span style="font-size:11px;color:#555;">Cabanas con vista al mar.</span>         </div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Caleta Pisagua</strong><br>             <span style="color:#0055ff;font-size:11px;">Gastronomia</span><br>             <span style="font-size:11px;color:#555;">Pescados frescos.</span>         </div>              </div>     </div>`)[0];
+                popup_1808662901cb196a286e94e21690c07f.setContent(html_fb5c87d8b65e01d81afa5a02da4d1353);
             
         
 
-        marker_1359f42a60573b260ea425375d24418d.bindPopup(popup_a1fcac668e3b367e2dc212857d92d060)
+        marker_efb71db1d66f40d4bb608c47eb8cbf05.bindPopup(popup_1808662901cb196a286e94e21690c07f)
         ;
 
         
     
     
-            marker_1359f42a60573b260ea425375d24418d.bindTooltip(
+            marker_efb71db1d66f40d4bb608c47eb8cbf05.bindTooltip(
                 `<div>
                      Pisagua
                  </div>`,
@@ -386,17 +394,17 @@
             );
         
     
-                marker_1359f42a60573b260ea425375d24418d.setIcon(icon_0ad57165347b745f39068e18f8eaefc2);
+                marker_efb71db1d66f40d4bb608c47eb8cbf05.setIcon(icon_59d66ac1529434b958951a5f25c91c36);
             
     
-            var marker_16f62fd101cf4cf4aed00a241a5e2196 = L.marker(
+            var marker_9b76f68136f114a2d9acf8e6a6cbaee0 = L.marker(
                 [-20.2066, -69.7942],
                 {
 }
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-            var icon_bf6be1b31dd540c397d8caadc03ee1df = L.AwesomeMarkers.icon(
+            var icon_09d601f172effc06d94b136572ee224b = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -407,24 +415,24 @@
             );
         
     
-        var popup_1bd4d31d926e100501141d25ed8ddd4d = L.popup({
+        var popup_097b08b7ff6d0fd53e47ede4ed084798 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_cbbfc4f63e9ea7aea3b032cd8e60cd47 = $(`<div id="html_cbbfc4f63e9ea7aea3b032cd8e60cd47" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Oficina Salitrera Humberstone</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Patrimonio de la Humanidad</div>         <p style="font-size:12px;color:#444;line-height:1.4;">UNESCO. Museo al aire libre del salitre.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Guia Tour Salitrero</strong><br>             <span style="color:#0055ff;font-size:11px;">Tours</span><br>             <span style="font-size:11px;color:#555;">Recorridos con historiadores.</span>         </div>              </div>     </div>`)[0];
-                popup_1bd4d31d926e100501141d25ed8ddd4d.setContent(html_cbbfc4f63e9ea7aea3b032cd8e60cd47);
+                var html_6a267ad85b4dc8cb10c47f6bec52b804 = $(`<div id="html_6a267ad85b4dc8cb10c47f6bec52b804" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Oficina Salitrera Humberstone</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Patrimonio de la Humanidad</div>         <p style="font-size:12px;color:#444;line-height:1.4;">UNESCO. Museo al aire libre del salitre.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>                  <div style="border-left:3px solid #0055ff;padding-left:8px;margin:6px 0;">             <strong>Guia Tour Salitrero</strong><br>             <span style="color:#0055ff;font-size:11px;">Tours</span><br>             <span style="font-size:11px;color:#555;">Recorridos con historiadores.</span>         </div>              </div>     </div>`)[0];
+                popup_097b08b7ff6d0fd53e47ede4ed084798.setContent(html_6a267ad85b4dc8cb10c47f6bec52b804);
             
         
 
-        marker_16f62fd101cf4cf4aed00a241a5e2196.bindPopup(popup_1bd4d31d926e100501141d25ed8ddd4d)
+        marker_9b76f68136f114a2d9acf8e6a6cbaee0.bindPopup(popup_097b08b7ff6d0fd53e47ede4ed084798)
         ;
 
         
     
     
-            marker_16f62fd101cf4cf4aed00a241a5e2196.bindTooltip(
+            marker_9b76f68136f114a2d9acf8e6a6cbaee0.bindTooltip(
                 `<div>
                      Oficina Salitrera Humberstone
                  </div>`,
@@ -434,17 +442,17 @@
             );
         
     
-                marker_16f62fd101cf4cf4aed00a241a5e2196.setIcon(icon_bf6be1b31dd540c397d8caadc03ee1df);
+                marker_9b76f68136f114a2d9acf8e6a6cbaee0.setIcon(icon_09d601f172effc06d94b136572ee224b);
             
     
-            var marker_beb08f9507d86b2fff4c687dbd25b091 = L.marker(
+            var marker_d2058d0a95ca1ed96ffc13f499b1c0b7 = L.marker(
                 [-20.485, -69.343],
                 {
 }
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-            var icon_a07476baed79ff075137660e0aef6b9b = L.AwesomeMarkers.icon(
+            var icon_d13103c0e0c4b1e4297c7bc29289488e = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -455,24 +463,24 @@
             );
         
     
-        var popup_062914ab310e23d91cd45e10c08652b8 = L.popup({
+        var popup_666cbd45dd5401ac7caefb787cd86429 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_ea8c7df6448d459bf661483e84c4051c = $(`<div id="html_ea8c7df6448d459bf661483e84c4051c" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Pica</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Oasis y limones</div>         <p style="font-size:12px;color:#444;line-height:1.4;">Oasis. Famoso por sus limones y cochas termales.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>         <div style="font-size:11px;color:#999;padding:4px 0;">Sin emprendimientos registrados.</div>     </div>     </div>`)[0];
-                popup_062914ab310e23d91cd45e10c08652b8.setContent(html_ea8c7df6448d459bf661483e84c4051c);
+                var html_0c0c651a91d26e79b16ba3909695fa66 = $(`<div id="html_0c0c651a91d26e79b16ba3909695fa66" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Pica</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Oasis y limones</div>         <p style="font-size:12px;color:#444;line-height:1.4;">Oasis. Famoso por sus limones y cochas termales.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>         <div style="font-size:11px;color:#999;padding:4px 0;">Sin emprendimientos registrados.</div>     </div>     </div>`)[0];
+                popup_666cbd45dd5401ac7caefb787cd86429.setContent(html_0c0c651a91d26e79b16ba3909695fa66);
             
         
 
-        marker_beb08f9507d86b2fff4c687dbd25b091.bindPopup(popup_062914ab310e23d91cd45e10c08652b8)
+        marker_d2058d0a95ca1ed96ffc13f499b1c0b7.bindPopup(popup_666cbd45dd5401ac7caefb787cd86429)
         ;
 
         
     
     
-            marker_beb08f9507d86b2fff4c687dbd25b091.bindTooltip(
+            marker_d2058d0a95ca1ed96ffc13f499b1c0b7.bindTooltip(
                 `<div>
                      Pica
                  </div>`,
@@ -482,17 +490,17 @@
             );
         
     
-                marker_beb08f9507d86b2fff4c687dbd25b091.setIcon(icon_a07476baed79ff075137660e0aef6b9b);
+                marker_d2058d0a95ca1ed96ffc13f499b1c0b7.setIcon(icon_d13103c0e0c4b1e4297c7bc29289488e);
             
     
-            var marker_e28f303a8a76d55486a62e4f059f0b58 = L.marker(
+            var marker_26292b81336a57884659f6f219fa6722 = L.marker(
                 [-19.7833, -69.3167],
                 {
 }
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-            var icon_672c4ddf1d125bdfe8343c8a152835bc = L.AwesomeMarkers.icon(
+            var icon_abed423240dbf3b1240b90930773bac5 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -503,24 +511,24 @@
             );
         
     
-        var popup_163a5aa73920c265ab9caf5636ec3705 = L.popup({
+        var popup_345680c75d56bb5133990b4d34b33363 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_828bd84e033182496712cbdc2a37cc46 = $(`<div id="html_828bd84e033182496712cbdc2a37cc46" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Mamina</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Termas ancestrales</div>         <p style="font-size:12px;color:#444;line-height:1.4;">Aguas sulfurosas medicinales.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>         <div style="font-size:11px;color:#999;padding:4px 0;">Sin emprendimientos registrados.</div>     </div>     </div>`)[0];
-                popup_163a5aa73920c265ab9caf5636ec3705.setContent(html_828bd84e033182496712cbdc2a37cc46);
+                var html_20a2a9751850a300ddaec36712700720 = $(`<div id="html_20a2a9751850a300ddaec36712700720" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui,sans-serif;max-width:220px;">         <h3 style="margin:0 0 4px;color:#0055ff;">Mamina</h3>         <div style="font-size:11px;color:#0055ff;margin-bottom:6px;">Termas ancestrales</div>         <p style="font-size:12px;color:#444;line-height:1.4;">Aguas sulfurosas medicinales.</p>         <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">         <div style="font-size:10px;font-weight:600;color:#0055ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Emprendimientos locales</div>         <div style="font-size:11px;color:#999;padding:4px 0;">Sin emprendimientos registrados.</div>     </div>     </div>`)[0];
+                popup_345680c75d56bb5133990b4d34b33363.setContent(html_20a2a9751850a300ddaec36712700720);
             
         
 
-        marker_e28f303a8a76d55486a62e4f059f0b58.bindPopup(popup_163a5aa73920c265ab9caf5636ec3705)
+        marker_26292b81336a57884659f6f219fa6722.bindPopup(popup_345680c75d56bb5133990b4d34b33363)
         ;
 
         
     
     
-            marker_e28f303a8a76d55486a62e4f059f0b58.bindTooltip(
+            marker_26292b81336a57884659f6f219fa6722.bindTooltip(
                 `<div>
                      Mamina
                  </div>`,
@@ -530,33 +538,33 @@
             );
         
     
-                marker_e28f303a8a76d55486a62e4f059f0b58.setIcon(icon_672c4ddf1d125bdfe8343c8a152835bc);
+                marker_26292b81336a57884659f6f219fa6722.setIcon(icon_abed423240dbf3b1240b90930773bac5);
             
     
-            var circle_marker_2f50cfc3062ece64c8efba9c45b624e3 = L.circleMarker(
+            var circle_marker_e194e1f170b6aa77f016fb9ff17746f3 = L.circleMarker(
                 [-20.254, -70.13],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_2ee6c1755b904ac1f7abd0a874222ec5 = L.popup({
+        var popup_4e72c08eed9437afb43c8debea357c43 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_cd7f806e648046c7de996d731cc520de = $(`<div id="html_cd7f806e648046c7de996d731cc520de" style="width: 100.0%; height: 100.0%;"><b>Playa Blanca</b><br><span style='font-size:11px;color:#555;'>Balneario familiar.</span></div>`)[0];
-                popup_2ee6c1755b904ac1f7abd0a874222ec5.setContent(html_cd7f806e648046c7de996d731cc520de);
+                var html_4b6aee396dac19981a4d2656ec4b84c9 = $(`<div id="html_4b6aee396dac19981a4d2656ec4b84c9" style="width: 100.0%; height: 100.0%;"><b>Playa Blanca</b><br><span style='font-size:11px;color:#555;'>Balneario familiar.</span></div>`)[0];
+                popup_4e72c08eed9437afb43c8debea357c43.setContent(html_4b6aee396dac19981a4d2656ec4b84c9);
             
         
 
-        circle_marker_2f50cfc3062ece64c8efba9c45b624e3.bindPopup(popup_2ee6c1755b904ac1f7abd0a874222ec5)
+        circle_marker_e194e1f170b6aa77f016fb9ff17746f3.bindPopup(popup_4e72c08eed9437afb43c8debea357c43)
         ;
 
         
     
     
-            circle_marker_2f50cfc3062ece64c8efba9c45b624e3.bindTooltip(
+            circle_marker_e194e1f170b6aa77f016fb9ff17746f3.bindTooltip(
                 `<div>
                      Playa Blanca
                  </div>`,
@@ -566,30 +574,30 @@
             );
         
     
-            var circle_marker_d7338b53e5bef8a896eba0f365c0f4a8 = L.circleMarker(
+            var circle_marker_d61f96844d55a46bf30d818f1dd24103 = L.circleMarker(
                 [-20.27, -70.115],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_88b20d08ee61e140a0775225573d7b36 = L.popup({
+        var popup_f0a176090534d6815731ecb251a4d8d4 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_7a6d44c36df16e5d831c7df676df34f1 = $(`<div id="html_7a6d44c36df16e5d831c7df676df34f1" style="width: 100.0%; height: 100.0%;"><b>Zofri</b><br><span style='font-size:11px;color:#555;'>Zona franca comercial.</span></div>`)[0];
-                popup_88b20d08ee61e140a0775225573d7b36.setContent(html_7a6d44c36df16e5d831c7df676df34f1);
+                var html_35ce221a57508c4927075fa0f457106c = $(`<div id="html_35ce221a57508c4927075fa0f457106c" style="width: 100.0%; height: 100.0%;"><b>Zofri</b><br><span style='font-size:11px;color:#555;'>Zona franca comercial.</span></div>`)[0];
+                popup_f0a176090534d6815731ecb251a4d8d4.setContent(html_35ce221a57508c4927075fa0f457106c);
             
         
 
-        circle_marker_d7338b53e5bef8a896eba0f365c0f4a8.bindPopup(popup_88b20d08ee61e140a0775225573d7b36)
+        circle_marker_d61f96844d55a46bf30d818f1dd24103.bindPopup(popup_f0a176090534d6815731ecb251a4d8d4)
         ;
 
         
     
     
-            circle_marker_d7338b53e5bef8a896eba0f365c0f4a8.bindTooltip(
+            circle_marker_d61f96844d55a46bf30d818f1dd24103.bindTooltip(
                 `<div>
                      Zofri
                  </div>`,
@@ -599,30 +607,30 @@
             );
         
     
-            var circle_marker_727728d28e5bf457be72d1fb7060337c = L.circleMarker(
+            var circle_marker_33e97e8d22edc7623767be7c550314d1 = L.circleMarker(
                 [-20.24, -70.145],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_bf952efc7cb812f5b28c61beadb266a5 = L.popup({
+        var popup_14335d82ef5146b4f28c88cb0f66edca = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_bf3864896ded6792b72d1d190789208d = $(`<div id="html_bf3864896ded6792b72d1d190789208d" style="width: 100.0%; height: 100.0%;"><b>Mall Iquique</b><br><span style='font-size:11px;color:#555;'>Centro comercial.</span></div>`)[0];
-                popup_bf952efc7cb812f5b28c61beadb266a5.setContent(html_bf3864896ded6792b72d1d190789208d);
+                var html_1670a5d9adf370a6416533c75c97add6 = $(`<div id="html_1670a5d9adf370a6416533c75c97add6" style="width: 100.0%; height: 100.0%;"><b>Mall Iquique</b><br><span style='font-size:11px;color:#555;'>Centro comercial.</span></div>`)[0];
+                popup_14335d82ef5146b4f28c88cb0f66edca.setContent(html_1670a5d9adf370a6416533c75c97add6);
             
         
 
-        circle_marker_727728d28e5bf457be72d1fb7060337c.bindPopup(popup_bf952efc7cb812f5b28c61beadb266a5)
+        circle_marker_33e97e8d22edc7623767be7c550314d1.bindPopup(popup_14335d82ef5146b4f28c88cb0f66edca)
         ;
 
         
     
     
-            circle_marker_727728d28e5bf457be72d1fb7060337c.bindTooltip(
+            circle_marker_33e97e8d22edc7623767be7c550314d1.bindTooltip(
                 `<div>
                      Mall Iquique
                  </div>`,
@@ -632,30 +640,30 @@
             );
         
     
-            var circle_marker_8226099eb9d0cdadf474509be8a8d0db = L.circleMarker(
+            var circle_marker_8f76551178704748c8ddfdae889a9e61 = L.circleMarker(
                 [-19.62, -70.21],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_a3bdc3abfb1f208f38b69a7e593480e8 = L.popup({
+        var popup_789e5d97e1e99235eb378cdce1a3f9b3 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_e0b368a9ce265682f8024692630d6d3e = $(`<div id="html_e0b368a9ce265682f8024692630d6d3e" style="width: 100.0%; height: 100.0%;"><b>Caleta Junin</b><br><span style='font-size:11px;color:#555;'>Caleta de pescadores.</span></div>`)[0];
-                popup_a3bdc3abfb1f208f38b69a7e593480e8.setContent(html_e0b368a9ce265682f8024692630d6d3e);
+                var html_f3e7f4c377a4f001085b314a73cc95fb = $(`<div id="html_f3e7f4c377a4f001085b314a73cc95fb" style="width: 100.0%; height: 100.0%;"><b>Caleta Junin</b><br><span style='font-size:11px;color:#555;'>Caleta de pescadores.</span></div>`)[0];
+                popup_789e5d97e1e99235eb378cdce1a3f9b3.setContent(html_f3e7f4c377a4f001085b314a73cc95fb);
             
         
 
-        circle_marker_8226099eb9d0cdadf474509be8a8d0db.bindPopup(popup_a3bdc3abfb1f208f38b69a7e593480e8)
+        circle_marker_8f76551178704748c8ddfdae889a9e61.bindPopup(popup_789e5d97e1e99235eb378cdce1a3f9b3)
         ;
 
         
     
     
-            circle_marker_8226099eb9d0cdadf474509be8a8d0db.bindTooltip(
+            circle_marker_8f76551178704748c8ddfdae889a9e61.bindTooltip(
                 `<div>
                      Caleta Junin
                  </div>`,
@@ -665,30 +673,30 @@
             );
         
     
-            var circle_marker_cb82a6920124ec3a2e9af0624c241a67 = L.circleMarker(
+            var circle_marker_083aacc5408fa780d2dcb94caa8f0ad1 = L.circleMarker(
                 [-19.58, -70.2],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_778185a620a183f58b08f0d75b861c48 = L.popup({
+        var popup_3911d1ecb38541395ffb053717e49660 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_acb4426ceccec52701934a1d5e697c40 = $(`<div id="html_acb4426ceccec52701934a1d5e697c40" style="width: 100.0%; height: 100.0%;"><b>Punta Pichalo</b><br><span style='font-size:11px;color:#555;'>Mirador costero.</span></div>`)[0];
-                popup_778185a620a183f58b08f0d75b861c48.setContent(html_acb4426ceccec52701934a1d5e697c40);
+                var html_c9ed8f6030db821ee1de88eecc89b2d6 = $(`<div id="html_c9ed8f6030db821ee1de88eecc89b2d6" style="width: 100.0%; height: 100.0%;"><b>Punta Pichalo</b><br><span style='font-size:11px;color:#555;'>Mirador costero.</span></div>`)[0];
+                popup_3911d1ecb38541395ffb053717e49660.setContent(html_c9ed8f6030db821ee1de88eecc89b2d6);
             
         
 
-        circle_marker_cb82a6920124ec3a2e9af0624c241a67.bindPopup(popup_778185a620a183f58b08f0d75b861c48)
+        circle_marker_083aacc5408fa780d2dcb94caa8f0ad1.bindPopup(popup_3911d1ecb38541395ffb053717e49660)
         ;
 
         
     
     
-            circle_marker_cb82a6920124ec3a2e9af0624c241a67.bindTooltip(
+            circle_marker_083aacc5408fa780d2dcb94caa8f0ad1.bindTooltip(
                 `<div>
                      Punta Pichalo
                  </div>`,
@@ -698,30 +706,30 @@
             );
         
     
-            var circle_marker_756539539a0e324b71d2a1833c6c52df = L.circleMarker(
+            var circle_marker_f04aba326f39c7aca051614c3f0d6916 = L.circleMarker(
                 [-19.61, -70.23],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_3c481503240699f25439167ddea0df6a = L.popup({
+        var popup_a354c124cce9543cb0a4f6c8e11dd916 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_a4ec4d00c2c7d889dcfc20843a350ca5 = $(`<div id="html_a4ec4d00c2c7d889dcfc20843a350ca5" style="width: 100.0%; height: 100.0%;"><b>Quebrada Tiliviche</b><br><span style='font-size:11px;color:#555;'>Oasis en la quebrada.</span></div>`)[0];
-                popup_3c481503240699f25439167ddea0df6a.setContent(html_a4ec4d00c2c7d889dcfc20843a350ca5);
+                var html_a677301c3512433304e182fe58ab940a = $(`<div id="html_a677301c3512433304e182fe58ab940a" style="width: 100.0%; height: 100.0%;"><b>Quebrada Tiliviche</b><br><span style='font-size:11px;color:#555;'>Oasis en la quebrada.</span></div>`)[0];
+                popup_a354c124cce9543cb0a4f6c8e11dd916.setContent(html_a677301c3512433304e182fe58ab940a);
             
         
 
-        circle_marker_756539539a0e324b71d2a1833c6c52df.bindPopup(popup_3c481503240699f25439167ddea0df6a)
+        circle_marker_f04aba326f39c7aca051614c3f0d6916.bindPopup(popup_a354c124cce9543cb0a4f6c8e11dd916)
         ;
 
         
     
     
-            circle_marker_756539539a0e324b71d2a1833c6c52df.bindTooltip(
+            circle_marker_f04aba326f39c7aca051614c3f0d6916.bindTooltip(
                 `<div>
                      Quebrada Tiliviche
                  </div>`,
@@ -731,30 +739,30 @@
             );
         
     
-            var circle_marker_854dab20a70f47c726848750671133b6 = L.circleMarker(
+            var circle_marker_094c181eea071b38479d80a005f463b6 = L.circleMarker(
                 [-20.26, -69.79],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_c53453bf6dd3d6e997b0acbc71548f75 = L.popup({
+        var popup_1053499c121e94d400b0ffb11c886ec2 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_86476de9a616169d4cf5a0c4f9722053 = $(`<div id="html_86476de9a616169d4cf5a0c4f9722053" style="width: 100.0%; height: 100.0%;"><b>La Tirana</b><br><span style='font-size:11px;color:#555;'>Fiesta religiosa.</span></div>`)[0];
-                popup_c53453bf6dd3d6e997b0acbc71548f75.setContent(html_86476de9a616169d4cf5a0c4f9722053);
+                var html_86e3bab767bd18f452c5c6199e7cc1ab = $(`<div id="html_86e3bab767bd18f452c5c6199e7cc1ab" style="width: 100.0%; height: 100.0%;"><b>La Tirana</b><br><span style='font-size:11px;color:#555;'>Fiesta religiosa.</span></div>`)[0];
+                popup_1053499c121e94d400b0ffb11c886ec2.setContent(html_86e3bab767bd18f452c5c6199e7cc1ab);
             
         
 
-        circle_marker_854dab20a70f47c726848750671133b6.bindPopup(popup_c53453bf6dd3d6e997b0acbc71548f75)
+        circle_marker_094c181eea071b38479d80a005f463b6.bindPopup(popup_1053499c121e94d400b0ffb11c886ec2)
         ;
 
         
     
     
-            circle_marker_854dab20a70f47c726848750671133b6.bindTooltip(
+            circle_marker_094c181eea071b38479d80a005f463b6.bindTooltip(
                 `<div>
                      La Tirana
                  </div>`,
@@ -764,30 +772,30 @@
             );
         
     
-            var circle_marker_a16014f81d3911d6519deef786677f55 = L.circleMarker(
+            var circle_marker_0ca7273d1e9117dc5b3b16ae4694d8dc = L.circleMarker(
                 [-20.22, -69.76],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_71de7e9f9c04901b1bdc6bfe1f455cfa = L.popup({
+        var popup_6f4d97c01fed56c44195f5635d47e70e = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_01cba5df1452dc9155e5d9889fbd2a22 = $(`<div id="html_01cba5df1452dc9155e5d9889fbd2a22" style="width: 100.0%; height: 100.0%;"><b>Pozo Almonte</b><br><span style='font-size:11px;color:#555;'>Capital de la provincia.</span></div>`)[0];
-                popup_71de7e9f9c04901b1bdc6bfe1f455cfa.setContent(html_01cba5df1452dc9155e5d9889fbd2a22);
+                var html_f846a74e8ed25ae721efd50c29b7a830 = $(`<div id="html_f846a74e8ed25ae721efd50c29b7a830" style="width: 100.0%; height: 100.0%;"><b>Pozo Almonte</b><br><span style='font-size:11px;color:#555;'>Capital de la provincia.</span></div>`)[0];
+                popup_6f4d97c01fed56c44195f5635d47e70e.setContent(html_f846a74e8ed25ae721efd50c29b7a830);
             
         
 
-        circle_marker_a16014f81d3911d6519deef786677f55.bindPopup(popup_71de7e9f9c04901b1bdc6bfe1f455cfa)
+        circle_marker_0ca7273d1e9117dc5b3b16ae4694d8dc.bindPopup(popup_6f4d97c01fed56c44195f5635d47e70e)
         ;
 
         
     
     
-            circle_marker_a16014f81d3911d6519deef786677f55.bindTooltip(
+            circle_marker_0ca7273d1e9117dc5b3b16ae4694d8dc.bindTooltip(
                 `<div>
                      Pozo Almonte
                  </div>`,
@@ -797,30 +805,30 @@
             );
         
     
-            var circle_marker_9c5cabf3b8aa45cd10e3857d09e56f7f = L.circleMarker(
+            var circle_marker_476007d3cac5bcaf9e21ff70a299f46d = L.circleMarker(
                 [-20.28, -69.81],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_ab4e2961bfbbf264bf9d51b120441731 = L.popup({
+        var popup_e8041faeb775f197dc0f451e9830b2ae = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_e8c998611516efc3cb44bbabffe889c7 = $(`<div id="html_e8c998611516efc3cb44bbabffe889c7" style="width: 100.0%; height: 100.0%;"><b>Canchones</b><br><span style='font-size:11px;color:#555;'>Centro de investigacion.</span></div>`)[0];
-                popup_ab4e2961bfbbf264bf9d51b120441731.setContent(html_e8c998611516efc3cb44bbabffe889c7);
+                var html_d0cbff760ce30da7fe77bd084663f5a8 = $(`<div id="html_d0cbff760ce30da7fe77bd084663f5a8" style="width: 100.0%; height: 100.0%;"><b>Canchones</b><br><span style='font-size:11px;color:#555;'>Centro de investigacion.</span></div>`)[0];
+                popup_e8041faeb775f197dc0f451e9830b2ae.setContent(html_d0cbff760ce30da7fe77bd084663f5a8);
             
         
 
-        circle_marker_9c5cabf3b8aa45cd10e3857d09e56f7f.bindPopup(popup_ab4e2961bfbbf264bf9d51b120441731)
+        circle_marker_476007d3cac5bcaf9e21ff70a299f46d.bindPopup(popup_e8041faeb775f197dc0f451e9830b2ae)
         ;
 
         
     
     
-            circle_marker_9c5cabf3b8aa45cd10e3857d09e56f7f.bindTooltip(
+            circle_marker_476007d3cac5bcaf9e21ff70a299f46d.bindTooltip(
                 `<div>
                      Canchones
                  </div>`,
@@ -830,30 +838,30 @@
             );
         
     
-            var circle_marker_6f36f3e8f3b031fb078e269ea0375bf3 = L.circleMarker(
+            var circle_marker_bc673b3bfa9c847faea67421a5d61469 = L.circleMarker(
                 [-20.5, -69.37],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_4f9755b19d9b529fa77736fef4a2249a = L.popup({
+        var popup_e43d42a428f7da544c547e381f6cf066 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_6b041c0cd03cb9a74d269da3da73b767 = $(`<div id="html_6b041c0cd03cb9a74d269da3da73b767" style="width: 100.0%; height: 100.0%;"><b>Matilla</b><br><span style='font-size:11px;color:#555;'>Pueblo con tradicion vinicola.</span></div>`)[0];
-                popup_4f9755b19d9b529fa77736fef4a2249a.setContent(html_6b041c0cd03cb9a74d269da3da73b767);
+                var html_b2571b91c85b2826bd0833c936897dd8 = $(`<div id="html_b2571b91c85b2826bd0833c936897dd8" style="width: 100.0%; height: 100.0%;"><b>Matilla</b><br><span style='font-size:11px;color:#555;'>Pueblo con tradicion vinicola.</span></div>`)[0];
+                popup_e43d42a428f7da544c547e381f6cf066.setContent(html_b2571b91c85b2826bd0833c936897dd8);
             
         
 
-        circle_marker_6f36f3e8f3b031fb078e269ea0375bf3.bindPopup(popup_4f9755b19d9b529fa77736fef4a2249a)
+        circle_marker_bc673b3bfa9c847faea67421a5d61469.bindPopup(popup_e43d42a428f7da544c547e381f6cf066)
         ;
 
         
     
     
-            circle_marker_6f36f3e8f3b031fb078e269ea0375bf3.bindTooltip(
+            circle_marker_bc673b3bfa9c847faea67421a5d61469.bindTooltip(
                 `<div>
                      Matilla
                  </div>`,
@@ -863,30 +871,30 @@
             );
         
     
-            var circle_marker_6d778b9fcaae2157c2d24cbcdb562d4a = L.circleMarker(
+            var circle_marker_55adb5ce5cc4484563233aa70334d0ae = L.circleMarker(
                 [-20.46, -69.32],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_c18e1b251ab06cc5486c86bf1b02ff6a = L.popup({
+        var popup_bf3c946116aee0089f54a2ba6cf17b8a = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_84c6a9d9ed48bcc0ef510a540a6aa60b = $(`<div id="html_84c6a9d9ed48bcc0ef510a540a6aa60b" style="width: 100.0%; height: 100.0%;"><b>La Huayca</b><br><span style='font-size:11px;color:#555;'>Cocha termal.</span></div>`)[0];
-                popup_c18e1b251ab06cc5486c86bf1b02ff6a.setContent(html_84c6a9d9ed48bcc0ef510a540a6aa60b);
+                var html_a096e7de3fe9b4f8280fa54be8fcfede = $(`<div id="html_a096e7de3fe9b4f8280fa54be8fcfede" style="width: 100.0%; height: 100.0%;"><b>La Huayca</b><br><span style='font-size:11px;color:#555;'>Cocha termal.</span></div>`)[0];
+                popup_bf3c946116aee0089f54a2ba6cf17b8a.setContent(html_a096e7de3fe9b4f8280fa54be8fcfede);
             
         
 
-        circle_marker_6d778b9fcaae2157c2d24cbcdb562d4a.bindPopup(popup_c18e1b251ab06cc5486c86bf1b02ff6a)
+        circle_marker_55adb5ce5cc4484563233aa70334d0ae.bindPopup(popup_bf3c946116aee0089f54a2ba6cf17b8a)
         ;
 
         
     
     
-            circle_marker_6d778b9fcaae2157c2d24cbcdb562d4a.bindTooltip(
+            circle_marker_55adb5ce5cc4484563233aa70334d0ae.bindTooltip(
                 `<div>
                      La Huayca
                  </div>`,
@@ -896,30 +904,30 @@
             );
         
     
-            var circle_marker_0f1f14e2987ae28c52197f50a608f849 = L.circleMarker(
+            var circle_marker_e15f222634819c9d3047f277e03943dd = L.circleMarker(
                 [-20.52, -69.36],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_b776199297e8aa5c1de2a9ffe7b4abb0 = L.popup({
+        var popup_ce2c4d5d959e0942677eb4f1aa9a0794 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_9179fc65378eb62e884a92ef778b5be2 = $(`<div id="html_9179fc65378eb62e884a92ef778b5be2" style="width: 100.0%; height: 100.0%;"><b>Salar del Huasco</b><br><span style='font-size:11px;color:#555;'>Salar altoandino.</span></div>`)[0];
-                popup_b776199297e8aa5c1de2a9ffe7b4abb0.setContent(html_9179fc65378eb62e884a92ef778b5be2);
+                var html_bb2ddfca3662b887c35cf3ac3a4fab4a = $(`<div id="html_bb2ddfca3662b887c35cf3ac3a4fab4a" style="width: 100.0%; height: 100.0%;"><b>Salar del Huasco</b><br><span style='font-size:11px;color:#555;'>Salar altoandino.</span></div>`)[0];
+                popup_ce2c4d5d959e0942677eb4f1aa9a0794.setContent(html_bb2ddfca3662b887c35cf3ac3a4fab4a);
             
         
 
-        circle_marker_0f1f14e2987ae28c52197f50a608f849.bindPopup(popup_b776199297e8aa5c1de2a9ffe7b4abb0)
+        circle_marker_e15f222634819c9d3047f277e03943dd.bindPopup(popup_ce2c4d5d959e0942677eb4f1aa9a0794)
         ;
 
         
     
     
-            circle_marker_0f1f14e2987ae28c52197f50a608f849.bindTooltip(
+            circle_marker_e15f222634819c9d3047f277e03943dd.bindTooltip(
                 `<div>
                      Salar del Huasco
                  </div>`,
@@ -929,30 +937,30 @@
             );
         
     
-            var circle_marker_404dc1b0643e7c20c776bedd11517006 = L.circleMarker(
+            var circle_marker_511b756be49ac1125a860eca47bad2fc = L.circleMarker(
                 [-19.75, -69.33],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_8031a3beeb44e998ada24bbe2d4e74ba = L.popup({
+        var popup_c61019226adba8e22fdf92be3a4f97e1 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_b687bf0714ecd5f624ed514755dd8ecc = $(`<div id="html_b687bf0714ecd5f624ed514755dd8ecc" style="width: 100.0%; height: 100.0%;"><b>Camina</b><br><span style='font-size:11px;color:#555;'>Pueblo altiplano.</span></div>`)[0];
-                popup_8031a3beeb44e998ada24bbe2d4e74ba.setContent(html_b687bf0714ecd5f624ed514755dd8ecc);
+                var html_775eeda7f0a7c4dc5a3180c5065f1336 = $(`<div id="html_775eeda7f0a7c4dc5a3180c5065f1336" style="width: 100.0%; height: 100.0%;"><b>Camina</b><br><span style='font-size:11px;color:#555;'>Pueblo altiplano.</span></div>`)[0];
+                popup_c61019226adba8e22fdf92be3a4f97e1.setContent(html_775eeda7f0a7c4dc5a3180c5065f1336);
             
         
 
-        circle_marker_404dc1b0643e7c20c776bedd11517006.bindPopup(popup_8031a3beeb44e998ada24bbe2d4e74ba)
+        circle_marker_511b756be49ac1125a860eca47bad2fc.bindPopup(popup_c61019226adba8e22fdf92be3a4f97e1)
         ;
 
         
     
     
-            circle_marker_404dc1b0643e7c20c776bedd11517006.bindTooltip(
+            circle_marker_511b756be49ac1125a860eca47bad2fc.bindTooltip(
                 `<div>
                      Camina
                  </div>`,
@@ -962,30 +970,30 @@
             );
         
     
-            var circle_marker_ec45cbb6110ba93810befeb836278855 = L.circleMarker(
+            var circle_marker_20878e21b8d5bbe1b5a0a9d18e386b40 = L.circleMarker(
                 [-19.8, -69.29],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_592449a263a8b215e6f170cb8b7d580c = L.popup({
+        var popup_845131bab6944cadbc1fce4e3db85eb5 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_fa8e3686045b708359fb56637e141413 = $(`<div id="html_fa8e3686045b708359fb56637e141413" style="width: 100.0%; height: 100.0%;"><b>Colchane</b><br><span style='font-size:11px;color:#555;'>Frontera con Bolivia.</span></div>`)[0];
-                popup_592449a263a8b215e6f170cb8b7d580c.setContent(html_fa8e3686045b708359fb56637e141413);
+                var html_1bedebf3ed087aee4fa52e38efc8e708 = $(`<div id="html_1bedebf3ed087aee4fa52e38efc8e708" style="width: 100.0%; height: 100.0%;"><b>Colchane</b><br><span style='font-size:11px;color:#555;'>Frontera con Bolivia.</span></div>`)[0];
+                popup_845131bab6944cadbc1fce4e3db85eb5.setContent(html_1bedebf3ed087aee4fa52e38efc8e708);
             
         
 
-        circle_marker_ec45cbb6110ba93810befeb836278855.bindPopup(popup_592449a263a8b215e6f170cb8b7d580c)
+        circle_marker_20878e21b8d5bbe1b5a0a9d18e386b40.bindPopup(popup_845131bab6944cadbc1fce4e3db85eb5)
         ;
 
         
     
     
-            circle_marker_ec45cbb6110ba93810befeb836278855.bindTooltip(
+            circle_marker_20878e21b8d5bbe1b5a0a9d18e386b40.bindTooltip(
                 `<div>
                      Colchane
                  </div>`,
@@ -995,30 +1003,30 @@
             );
         
     
-            var circle_marker_9fb0f22b6b97d2b997179240ffbf8f5c = L.circleMarker(
+            var circle_marker_c311cd20622eaea724416face61f6c86 = L.circleMarker(
                 [-19.77, -69.35],
                 {"bubblingMouseEvents": true, "color": "#22aa22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22aa22", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
-            ).addTo(map_3d22348aa08d760a0be0970680739cb0);
+            ).addTo(map_8c0e5b08070bdd89647f09b245d789cb);
         
     
-        var popup_22b308960aa2a8c5354cf0484553cc61 = L.popup({
+        var popup_ba5b2991b0225a871738c9530834086c = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_84b4bdeff66a780cfa20906b955f1c8f = $(`<div id="html_84b4bdeff66a780cfa20906b955f1c8f" style="width: 100.0%; height: 100.0%;"><b>Isluga</b><br><span style='font-size:11px;color:#555;'>Volcan y parque nacional.</span></div>`)[0];
-                popup_22b308960aa2a8c5354cf0484553cc61.setContent(html_84b4bdeff66a780cfa20906b955f1c8f);
+                var html_f0c8c1cf39e47671d8974b7cd4b6344c = $(`<div id="html_f0c8c1cf39e47671d8974b7cd4b6344c" style="width: 100.0%; height: 100.0%;"><b>Isluga</b><br><span style='font-size:11px;color:#555;'>Volcan y parque nacional.</span></div>`)[0];
+                popup_ba5b2991b0225a871738c9530834086c.setContent(html_f0c8c1cf39e47671d8974b7cd4b6344c);
             
         
 
-        circle_marker_9fb0f22b6b97d2b997179240ffbf8f5c.bindPopup(popup_22b308960aa2a8c5354cf0484553cc61)
+        circle_marker_c311cd20622eaea724416face61f6c86.bindPopup(popup_ba5b2991b0225a871738c9530834086c)
         ;
 
         
     
     
-            circle_marker_9fb0f22b6b97d2b997179240ffbf8f5c.bindTooltip(
+            circle_marker_c311cd20622eaea724416face61f6c86.bindTooltip(
                 `<div>
                      Isluga
                  </div>`,
