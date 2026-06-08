@@ -32,7 +32,7 @@ Mapa Folium con puntos de interés, navegación por regiones y flechas direccion
 
 ## Tecnologías
 
-HTML, CSS, JavaScript · Folium · Leaflet.js · CartoDB tiles
+Python (Folium) + HTML, CSS y JavaScript
 
 ## Licencia
 
