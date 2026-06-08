@@ -19,6 +19,7 @@ Mapa Folium con puntos de interés, navegación por regiones y flechas direccion
 ## Capturas de pantalla
 
 **Simulación de QR**
+
 <img width="307" height="610" alt="imagen" src="https://github.com/user-attachments/assets/188faaa2-2b22-4acc-8cbe-1174a199b5dd" />
 
 **Exploración de localidad con flechas guía**
